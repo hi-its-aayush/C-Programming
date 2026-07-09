@@ -1,5 +1,4 @@
 // Banking Program
-//Aayush Acharya
 
 
 #include <stdio.h>
@@ -13,18 +12,25 @@ int main () {
 
     float balance = 0.0f;
 
-    printf("Welcome to the Bank");
+    printf("====Welcome to the Bank====\n");
 
     do{
-        printf("Select an option:\n");
+        printf("\nSelect an option:\n");
 
         printf("\n1. Check Balance\n ");
         printf("\n2. Deposit Money\n");
-        printf("\n3. Withdraw Miney\n");
+        printf("\n3. Withdraw Money\n");
         printf("\n4. Exit\n");
 
-        printf("Select your choice:");
-        scanf("%d", &choice);
+        printf("\nSelect your choice:");
+        
+        if (scanf("%d", &choice) != 1) {
+            while (getchar() != '\n'); 
+            choice = 0;
+            continue;
+            }
+
+
 
         switch (choice){
             case 1:
@@ -61,13 +67,44 @@ void checkBalance(float balance){
 }
 
 float deposit (){
+    float amount = 0.0f;
 
-    return 0.0f;
+    printf("\nEnter amount to deposit: $");
+    scanf("%f", &amount);
+
+    if (amount < 0){
+        printf ("Invalid amount\n");
+        return 0.0f;
+    }
+    else {
+        printf("Successfully deposited $%.2f", amount);
+    }
+
+    return amount;
 
 }
 
 float withdraw(float balance){
 
-    return 0.0f;
+    float amount = 0.0f;
 
+    printf("\nEnter amount to withdraw: $");
+
+    scanf("%f", &amount);
+
+    if(amount < 0){
+        printf("Invalid amount !\n");
+        return 0.0f;
+    
+    }
+
+    else if (amount > balance){
+        printf("Insufficient funds ! Your current balance is %.2f\n", balance);
+        return 0.0f;
+    }
+    else {
+        printf("Successfully withdrawn $%.2f", amount);
+            return amount;
+    }
+return balance;
 }
